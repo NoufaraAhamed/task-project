@@ -8,7 +8,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect("mongodb://127.0.0.1:27017/test");
+mongoose.Promise = global.Promise;
+mongoose.connect("mongodb://127.0.0.1:27017/test", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 async function getItems() {
   try {
@@ -33,9 +37,11 @@ async function getItems() {
         sellingRate: response[i]["taxIncAmount"],
         stock: response[i]["stock"],
       });
-       await item.save().then(savedData=>{
-        console.log(`${savedData}`)
-       }).catch(err=>console.log(`error saving data ${err}`))
+      await item.save()
+      .then((savedData) => {
+        console.log(`${savedData}`);
+      })
+      .catch((err) => console.log(`error saving data ${err}`));
     }
   } catch (error) {
     console.error("Error fetching items from the external API:", error);
@@ -45,10 +51,13 @@ async function getItems() {
 
 getItems();
 
-app.get("/getItems", (req, res) => {
-  ItemModel.find()
-    .then((items) => res.json(items))
-    .catch((err) => res.json(err));
+app.get("/getItems", async (req, res) => {
+  try {
+    const items = await ItemModel.find();
+    res.json(items);
+  } catch (err) {
+    res.status(500).json({ error: "Error fetching items" });
+  }
 });
 
 const port = process.env.PORT || 5000;

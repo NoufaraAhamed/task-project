@@ -1,0 +1,45 @@
+.mainsection{
+    position: relative;
+    background:rgb(211, 212, 220) ;
+    width: 100%;
+    height: 100vh;
+}
+.box{
+    position: absolute;
+    background: white;
+    width: 96%;
+    height: 85vh;
+    margin: 30px 35px;
+    border-radius: 10px;
+}
+.master{
+    display: flex;
+    margin: 30px 50px;
+    gap: 600px;
+
+    
+}
+.master-title{
+    display: flex;
+}
+.count{
+    background: blue;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    color: white;
+    margin: 10px 10px
+}
+.para{
+    margin-left: -40px;
+}
+.master-left{
+    display: flex;
+    flex-direction: column;
+}
+.master-button{
+    display: flex;
+    gap: 30px;
+    padding: 25px;
+    justify-content: right;
+}

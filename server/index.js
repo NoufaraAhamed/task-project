@@ -23,16 +23,19 @@ async function getItems() {
 
     const response = await apiItems.data;
     console.log(response);
+    
     for (let i = 0; i < response.length; i++) {
-      const item = new ItemModel({
+      const item = await new ItemModel({
         itemName: response[i]["itemName"],
         itemCode: response[i]["itemCode"],
-        categoryName: response[i]["categoryName"],
+        categoryId: response[i]["categoryId"],
         landingCost: response[i]["landingCost"],
-        sellingRate: response[i]["sellingRate"],
+        sellingRate: response[i]["taxIncAmount"],
         stock: response[i]["stock"],
       });
-      await item.save();
+       await item.save().then(savedData=>{
+        console.log(`${savedData}`)
+       }).catch(err=>console.log(`error saving data ${err}`))
     }
   } catch (error) {
     console.error("Error fetching items from the external API:", error);

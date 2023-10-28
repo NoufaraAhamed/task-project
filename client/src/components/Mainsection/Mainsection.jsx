@@ -7,7 +7,8 @@ import plus_icon from '../Assets/icons-plus.png'
 import filter_icon from '../Assets/icons-filter.png'
 import Table from '../Table/Table'
 
-function Mainsection() {
+function Mainsection(props) {
+  const {items} =props;
   return (
     <div className='mainsection'>
       <div className="box">
@@ -75,7 +76,7 @@ function Mainsection() {
             </div> 
             </div> 
             
-            <Table/>
+            <Table items={items}/>
       </div>
     </div>
   )

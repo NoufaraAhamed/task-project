@@ -43,3 +43,15 @@
     padding: 25px;
     justify-content: right;
 }
+.sort{
+    display: flex;
+    margin: 30px 50px;
+    gap: 750px;
+}
+.sortlabel{
+    background: none !important;
+    margin: -30px 0px !important;
+}
+.sort-dropdown{
+    width: 100px !important;
+}

@@ -4,6 +4,8 @@ import print_icon from '../Assets/icons-print.png'
 import export_icon from '../Assets/icons-upload.png'
 import send_icon from '../Assets/icons-send.png'
 import plus_icon from '../Assets/icons-plus.png'
+import filter_icon from '../Assets/icons-filter.png'
+import Table from '../Table/Table'
 
 function Mainsection() {
   return (
@@ -29,7 +31,51 @@ function Mainsection() {
         <hr /> 
 
         <div className="sort">
-            </div>  
+        <div className="dropdowns">
+          <div class="dropdown sort-dropdown">
+            <label htmlFor=" "  className='sortlabel'>Search by</label>
+            <button
+              class="btn  dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton1"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              All
+            </button>
+          </div>
+          <div class="dropdown sort-dropdown">
+          <label htmlFor=""  className='sortlabel'>Sort by</label>
+            <button
+              class="btn  dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton1"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              All
+            </button>
+          </div>
+          <div class="dropdown sort-dropdown">
+          <label htmlFor="" className='sortlabel'>sort order</label>
+            <button
+              class="btn  dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton1"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Ascending
+            </button>
+          </div>
+        </div>
+        <div className="master-button">
+                <button className="btn btn-primary"><img src={filter_icon} alt="" /> Show </button>                 
+                <button className="btn btn-primary"> Clear </button>    
+            </div> 
+            </div> 
+            
+            <Table/>
       </div>
     </div>
   )

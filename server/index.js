@@ -8,11 +8,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://127.0.0.1:27017/test", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+
+mongoose.connect("mongodb://127.0.0.1:27017/test");
+ 
 
 async function getItems() {
   try {
@@ -37,9 +35,9 @@ async function getItems() {
         sellingRate: response[i]["taxIncAmount"],
         stock: response[i]["stock"],
       });
-      await item.save()
-      .then((savedData) => {
-        console.log(`${savedData}`);
+      await item.create()
+      .then(() => {
+        console.log('success');
       })
       .catch((err) => console.log(`error saving data ${err}`));
     }
@@ -51,7 +49,7 @@ async function getItems() {
 
 getItems();
 
-app.get("/getItems", async (req, res) => {
+app.get("/api/v1/Item", async (req, res) => {
   try {
     const items = await ItemModel.find();
     res.json(items);

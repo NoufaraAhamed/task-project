@@ -8,7 +8,7 @@ import  axios from 'axios'
 function App() {
   const [items , setItems] = useState([])
   useEffect(()=>{
-    axios.get('http://localhost:5000/getItems')
+    axios.get('http://localhost:5000/api/v1/Item')
     .then(items=>setItems(items.data))
     .catch(err=> console.log(err))
   },[])
